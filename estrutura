@@ -1,0 +1,40 @@
+ProjetoZeny/
+│
+├── assets/                      # Pasta para armazenar as imagens
+│   ├── monsters/                # Sprites de monstros para detecção
+│   ├── ui_elements/            # Elementos da interface do jogo
+│   ├── captcha/                # Exemplos de captchas para treinamento
+│   └── maps/                   # Imagens de mapas ou pontos de referência
+│
+├── config/                     # Configurações do bot
+│   ├── __init__.py
+│   ├── settings.py             # Configurações gerais
+│   └── hotkeys.py              # Definições de atalhos
+│
+├── core/                       # Funcionalidades principais
+│   ├── __init__.py
+│   ├── bot.py                  # Classe principal do bot
+│   └── state_machine.py        # Máquina de estados para controlar os modos
+│
+├── modes/                      # Diferentes modos do bot
+│   ├── __init__.py
+│   ├── farm_mode.py            # Modo de farmes
+│   ├── rest_mode.py            # Modo de descanso
+│   ├── sell_mode.py            # Modo de venda
+│   └── captcha_mode.py         # Modo de resolução de captcha
+│
+├── utils/                      # Utilitários
+│   ├── __init__.py
+│   ├── image_recognition.py    # Funções de reconhecimento de imagem
+│   ├── mouse_controller.py     # Controle do mouse
+│   ├── keyboard_controller.py  # Controle do teclado
+│   ├── ocr.py                  # Funções de OCR
+│   └── randomizer.py           # Funções para aleatorizar movimentos
+│
+├── ui/                         # Interface de usuário
+│   ├── __init__.py
+│   └── interface.py            # Interface para configuração
+│
+├── __init__.py
+├── main.py                     # Ponto de entrada do programa
+└── requirements.txt            # Dependências do projeto
