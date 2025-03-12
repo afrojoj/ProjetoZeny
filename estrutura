@@ -18,7 +18,7 @@ ProjetoZeny/
 │
 ├── modes/                      # Diferentes modos do bot
 │   ├── __init__.py
-│   ├── farm_mode.py            # Modo de farmes
+│   ├── farm_mode.py            # Modo de farme
 │   ├── rest_mode.py            # Modo de descanso
 │   ├── sell_mode.py            # Modo de venda
 │   └── captcha_mode.py         # Modo de resolução de captcha
