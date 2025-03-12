@@ -8,7 +8,7 @@ CAPTCHA_DIR = os.path.join(ASSETS_DIR, "captcha")
 MAPS_DIR = os.path.join(ASSETS_DIR, "maps")
 
 # Configurações de OCR
-TESSERACT_PATH = r"C:\Program Files\Tesseract-OCR\tesseract.exe"  # Insira o caminho do Tesseract
+TESSERACT_PATH = r"C:\Users\Afro\AppData\Local\Programs\Tesseract-OCR\tesseract.exe"  # Insira o caminho do Tesseract
 
 # Configurações de tempo
 WAIT_TIME = 0.5  # Tempo de espera padrão

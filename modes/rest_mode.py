@@ -13,7 +13,7 @@ def rest_mode():
 
     while True:
         # Verifica se o SP já regenerou o suficiente
-        sp_image = f"{UI_ELEMENTS_DIR}sp_bar.png"  # Caminho da imagem da barra de SP
+        sp_image = f"{UI_ELEMENTS_DIR}barra_sp.png"  # Caminho da imagem da barra de SP
         sp_text = read_text_from_image(sp_image)
         if sp_text and int(sp_text) >= 50:  # Volta ao modo farme se o SP estiver acima de 50%
             print("SP regenerado! Voltando ao modo farme.")

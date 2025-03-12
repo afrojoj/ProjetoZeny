@@ -28,7 +28,7 @@ def sell_mode():
     time.sleep(random.uniform(*RANDOM_DELAY))
 
     # Transfere itens predefinidos para a Kafra
-    items_to_store = ["item1.png", "item2.png", "item3.png"]  # Insira os nomes das imagens dos itens
+    items_to_store = ["item_emperium.png", "item_erva_azul.png", "item_mastela.png"]  # Insira os nomes das imagens dos itens
     for item in items_to_store:
         item_image = f"{UI_ELEMENTS_DIR}{item}"  # Caminho da imagem do item
         item_location = find_image_on_screen(item_image)

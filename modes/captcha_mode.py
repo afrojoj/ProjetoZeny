@@ -20,6 +20,7 @@ def captcha_mode():
         time.sleep(random.uniform(*RANDOM_DELAY))
         pyautogui.press("enter")  # Confirma o captcha
 
+
     # Resolve o captcha da sala secreta
     npc_image = os.path.join(CAPTCHA_DIR, "npc.png")  # Insira o caminho da imagem
     npc_location = find_image_on_screen(npc_image)
