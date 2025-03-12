@@ -1,3 +1,4 @@
+import os  # Adicionado aqui
 import time
 import random
 from core.state_machine import StateMachine
@@ -5,6 +6,7 @@ from utils.image_recognition import find_image_on_screen
 from utils.ocr import read_text_from_image
 from config.settings import UI_ELEMENTS_DIR, WAIT_TIME, RANDOM_DELAY
 from config.hotkeys import HOTKEYS
+
 
 class Bot:
     def __init__(self):
