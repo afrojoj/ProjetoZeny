@@ -1,4 +1,5 @@
-import os  # Adicionado aqui
+import threading
+import os
 import time
 import random
 from core.state_machine import StateMachine
@@ -14,17 +15,62 @@ class Bot:
         self.state_machine.set_state("farm")  # Começa no modo farme
         self.sp_threshold = 35  # Limite de SP para entrar em descanso
         self.inventory_threshold = 90  # Limite de slots no inventário para entrar em venda
-        self.max_sp = 100  # SP máximo (ajuste conforme necessário)
+        self.max_sp = 704  # SP máximo (ajuste conforme necessário)
+        self.screenshot_cache = None  # Cache para capturas de tela
+        self.running = True  # Controle para encerrar threads
+
+        # Criação das threads
+        self.screenshot_thread = threading.Thread(target=self.update_screenshot_cache)
+        self.condition_thread = threading.Thread(target=self.check_conditions_thread)
 
     def start(self):
         """
         Inicia o bot e gerencia as transições entre os estados.
         """
         print("Bot iniciado!")
-        while True:
-            self.check_conditions()  # Verifica as condições para mudar de estado
-            self.state_machine.run()  # Executa o estado atual
-            time.sleep(WAIT_TIME)  # Espera um pouco antes da próxima iteração
+
+        # Inicia as threads em segundo plano
+        self.screenshot_thread.start()
+        self.condition_thread.start()
+
+        try:
+            while self.running:
+                self.state_machine.run()  # Executa o estado atual
+                time.sleep(WAIT_TIME)  # Espera um pouco antes da próxima iteração
+        except KeyboardInterrupt:
+            print("Bot interrompido manualmente! Encerrando...")
+            self.stop()
+
+        # Aguarda o fim das threads
+        self.screenshot_thread.join()
+        self.condition_thread.join()
+
+    def stop(self):
+        """
+        Para o bot e finaliza as threads.
+        """
+        self.running = False
+        print("Finalizando o bot...")
+
+    def update_screenshot_cache(self):
+        """
+        Atualiza o cache de captura de tela continuamente em uma thread separada.
+        """
+        while self.running:
+            try:
+                import pyautogui
+                self.screenshot_cache = pyautogui.screenshot()
+                time.sleep(0.2)  # Evita capturas muito frequentes
+            except Exception as e:
+                print(f"Erro ao capturar a tela: {e}")
+
+    def check_conditions_thread(self):
+        """
+        Verifica condições em um loop contínuo em uma thread separada.
+        """
+        while self.running:
+            self.check_conditions()
+            time.sleep(1)  # Intervalo de verificação
 
     def check_conditions(self):
         """
