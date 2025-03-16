@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import messagebox
 from config.hotkeys import HOTKEYS
 
+
 class BotInterface:
     def __init__(self, root):
         """
@@ -10,7 +11,7 @@ class BotInterface:
         """
         self.root = root
         self.root.title("Configuração do Bot")
-        self.root.geometry("400x300")
+        self.root.geometry("400x400")  # Aumentei um pouco a altura para melhor visualização
 
         # Dicionário para armazenar os atalhos configurados
         self.hotkeys = HOTKEYS.copy()
@@ -26,19 +27,22 @@ class BotInterface:
         title_label = tk.Label(self.root, text="Configuração de Atalhos", font=("Arial", 16))
         title_label.pack(pady=10)
 
-        # Frame para os campos de entrada
-        input_frame = tk.Frame(self.root)
-        input_frame.pack(pady=10)
-
         # Campos de entrada para cada atalho
         self.entries = {}
-        for i, (hotkey_name, hotkey_value) in enumerate(HOTKEYS.items()):
-            label = tk.Label(input_frame, text=f"{hotkey_name.capitalize()}:")
-            label.grid(row=i, column=0, padx=5, pady=5, sticky="e")
 
-            entry = tk.Entry(input_frame)
+        for hotkey_name, hotkey_value in HOTKEYS.items():
+            # Frame para cada linha de atalho (alinhamento horizontal)
+            hotkey_frame = tk.Frame(self.root)
+            hotkey_frame.pack(fill="x", padx=20, pady=5)
+
+            # Label do atalho
+            label = tk.Label(hotkey_frame, text=f"{hotkey_name.capitalize()}:", width=10, anchor="w")
+            label.pack(side="left", padx=5)
+
+            # Campo de entrada
+            entry = tk.Entry(hotkey_frame)
             entry.insert(0, hotkey_value)
-            entry.grid(row=i, column=1, padx=5, pady=5)
+            entry.pack(side="left", fill="x", expand=True, padx=5)
             self.entries[hotkey_name] = entry
 
         # Botão de salvar
@@ -61,6 +65,7 @@ class BotInterface:
         except Exception as e:
             messagebox.showerror("Erro", f"Ocorreu um erro ao salvar os atalhos: {e}")
 
+
 def run_interface():
     """
     Executa a interface do bot.
@@ -68,3 +73,7 @@ def run_interface():
     root = tk.Tk()
     app = BotInterface(root)
     root.mainloop()
+
+
+if __name__ == "__main__":
+    run_interface()
